@@ -1,6 +1,10 @@
 package ejerciciosInterfaces.ejercicio2;
 
-public class Futbolista {
+import ejerciciosInterfaces.ejercicio1.Socio;
+
+import java.util.Objects;
+
+public class Futbolista implements Comparable{
     int numCamiseta, edad, numGoles;
     String nombre;
 
@@ -19,5 +23,24 @@ public class Futbolista {
                 ", edad = " + edad +
                 ", numGoles = " + numGoles +
                 ", nombre = " + nombre;
+    }
+    @Override
+    public boolean equals(Object o) {
+        boolean igual = false;
+        Futbolista f = (Futbolista) o;
+        if (this.numCamiseta == f.numCamiseta && this.nombre == f.nombre)
+            igual = true;
+        return igual;
+    }
+    @Override
+    public int compareTo(Object o) {
+        int pos;
+        Futbolista f = (Futbolista) o;
+        if (this.numCamiseta == f.numCamiseta){
+            pos = this.nombre.compareTo(f.nombre);
+        }else if (this.numCamiseta < f.numCamiseta){
+            pos = -1;
+        }else pos = 1;
+        return pos;
     }
 }
